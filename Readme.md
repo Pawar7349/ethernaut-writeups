@@ -8,6 +8,7 @@ Ethernaut is a Web3 CTF focused on Ethereum contract vulnerabilities. Each level
 ## Structure
 - `ethernaut-notes.md` - short writeups per level (Bug -> Exploit -> Fix)
 - `attack-scripts.md` - exploit contracts/scripts used
+- `console-scripts.md` - console scripts
 - `Readme.md` - overview
 
 ## How to use these notes
